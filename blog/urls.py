@@ -2,9 +2,10 @@ from django.conf.urls import patterns, url
 from django.conf import settings
 
 urlpatterns = patterns('',
-    url(r'^(.+)/$', 'blog.views.view_article', name='view_article'),
+    url(r'^$', 'blog.views.home_page', name='home_page'),
+    url(r'^(\w+)/$', 'blog.views.view_article', name='view_article'),
     url(r'^new$', 'blog.views.new_article', name='new_article'),
-    url(r'^edit/(.+)/$', 'blog.views.view_article', name='edit_article'),
+    # url(r'^edit/(.+)/$', 'blog.views.edit_article', name='edit_article'),
 )
 
 if settings.DEBUG:
