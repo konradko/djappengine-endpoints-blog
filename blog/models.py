@@ -1,5 +1,4 @@
 from google.appengine.ext import db
-# from django.shortcuts import resolve_url
 
 class Article(db.Model):
     title = db.StringProperty(required=True)
@@ -10,4 +9,4 @@ class Article(db.Model):
     last_update = db.DateTimeProperty(auto_now_add=True)
 
     def get_absolute_url(self):
-        return "/%s" % self.slug
+        return "/articles/%s" % self.slug
