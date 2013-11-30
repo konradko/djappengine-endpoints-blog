@@ -4,17 +4,22 @@ from django.template.defaultfilters import slugify
 
 from blog.models import Article
 
-DUPLICATE_TITLE_ERROR = "You've already got article with this title"
-EMPTY_FIELD_ERROR = "You can't have an empty article"
-
 class ArticleForm(forms.Form):
-    title = forms.CharField(required=True)
-    content = forms.CharField(
-        required=True,
-        widget=forms.Textarea(attrs={
-            'placeholder': 'Enter article',
-        })
-    )
+
+    class Meta:
+        title = forms.CharField(required=True)
+        content = forms.CharField(
+            required=True,
+            widget=forms.Textarea(attrs={
+                'placeholder': 'Enter article',
+            })
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title.error_messages['required'] = "Title can't be empty"
+        self.content.error_messages['required'] = "Content can't be empty"
+
 
 def home_page(request):
     articles = Article.all().order('-created')
