@@ -20,6 +20,6 @@ class ArticleForm(forms.Form):
     def clean_title(self):
         data = self.cleaned_data['title']
         # Check that title is unique, needed for slug uniqueness
-        if Article.all().filter('title', data).get():
+        if Article.query(Article.title == data).get():
             raise forms.ValidationError("You already have article with that title!")
         return data

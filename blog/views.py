@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import slugify
+from django.http import Http404
 
 from blog.forms import ArticleForm
 from blog.models import Article
 
-
 def home_page(request):
-    articles = Article.all().order('-created').fetch(10)
+    articles = Article.query().order(-Article.created).fetch(10)
     return render(request, 'home.html', {'articles': articles, "form": ArticleForm()})
 
 def new_article(request):
@@ -22,5 +22,12 @@ def new_article(request):
     return render(request, 'new_article.html', {'form': form})
 
 def view_article(request, article_slug):
-    article = Article.all().filter('slug', article_slug).get()
+    # TODO: Crazy stuff, but without sleeping it returns 404. Investigate later
+    import time
+    time.sleep(0.1)
+
+    article = Article.query(Article.slug == article_slug).get()
+    if article is None:
+        raise Http404
+
     return render(request, 'article.html', {'article': article})
