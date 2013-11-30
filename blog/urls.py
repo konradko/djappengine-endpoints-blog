@@ -1,9 +1,10 @@
-from django.conf.urls import *
+from django.conf.urls import patterns, url
 from django.conf import settings
-from core import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.hello_world, name='hello-world'),
+    url(r'^(.+)/$', 'blog.views.view_article', name='view_article'),
+    url(r'^new$', 'blog.views.new_article', name='new_article'),
+    url(r'^edit/(.+)/$', 'blog.views.view_article', name='edit_article'),
 )
 
 if settings.DEBUG:
