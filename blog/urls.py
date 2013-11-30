@@ -1,10 +1,12 @@
 from django.conf.urls import patterns, url
 from django.conf import settings
 
+from blog import views
+
 urlpatterns = patterns('',
-    url(r'^$', 'blog.views.home_page', name='home_page'),
-    url(r'^articles/(\w+)/$', 'blog.views.view_article', name='view_article'),
-    url(r'^new$', 'blog.views.new_article', name='new_article'),
+    url(r'^$', views.home_page, name='home_page'),
+    url(r'^articles/(\w+)/$', views.view_article, name='view_article'),
+    url(r'^new$', views.new_article, name='new_article'),
     # url(r'^edit/(.+)/$', 'blog.views.edit_article', name='edit_article'),
 )
 
