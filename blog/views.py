@@ -1,24 +1,9 @@
-from django import forms
 from django.shortcuts import render
 from django.template.defaultfilters import slugify
 
+from blog.forms import ArticleForm
 from blog.models import Article
 
-class ArticleForm(forms.Form):
-
-    class Meta:
-        title = forms.CharField(required=True)
-        content = forms.CharField(
-            required=True,
-            widget=forms.Textarea(attrs={
-                'placeholder': 'Enter article',
-            })
-        )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.title.error_messages['required'] = "Title can't be empty"
-        self.content.error_messages['required'] = "Content can't be empty"
 
 
 def home_page(request):
