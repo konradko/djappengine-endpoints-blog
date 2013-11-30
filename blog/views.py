@@ -22,10 +22,6 @@ def new_article(request):
     return render(request, 'new_article.html', {'form': form})
 
 def view_article(request, article_slug):
-    # TODO: Crazy stuff, but without sleeping it returns 404. Investigate later
-    import time
-    time.sleep(0.1)
-
     article = Article.query(Article.slug == article_slug).get()
     if article is None:
         raise Http404
