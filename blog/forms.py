@@ -3,7 +3,7 @@ from django import forms
 from blog.models import Article
 
 
-class ArticleForm(forms.Form):
+class BaseArticleForm(forms.Form):
     title = forms.CharField(
         required=True,
         error_messages={'required': "Title can't be empty"},
@@ -17,7 +17,7 @@ class ArticleForm(forms.Form):
         })
     )
 
-class NewArticleForm(ArticleForm):
+class NewArticleForm(BaseArticleForm):
 
     def clean_title(self):
         data = self.cleaned_data['title']
@@ -25,3 +25,6 @@ class NewArticleForm(ArticleForm):
         if Article.query(Article.title == data).get():
             raise forms.ValidationError("You already have article with that title!")
         return data
+
+class EditArticleForm(BaseArticleForm):
+    delete = forms.BooleanField()
