@@ -4,7 +4,6 @@ class Article(ndb.Model):
     title = ndb.StringProperty(required=True)
     slug = ndb.StringProperty(required=True)
     content = ndb.TextProperty(required=True)
-    # published = db.BooleanProperty(required=True)
     created = ndb.DateTimeProperty(auto_now_add=True)
     last_update = ndb.DateTimeProperty(auto_now_add=True)
 
