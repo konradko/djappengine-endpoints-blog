@@ -45,5 +45,5 @@ def delete_article(request, article_slug):
     return redirect('/')
 
 def home_page(request):
-    articles = Article.query().order(-Article.created).fetch(10)
+    articles = Article.query().order(-Article.created).fetch()
     return render(request, 'home.html', {'articles': articles})
