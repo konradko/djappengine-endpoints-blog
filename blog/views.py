@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import slugify
 from django.http import Http404
-from google.appengine.ext import ndb
+from datetime import datetime
 
 from blog.forms import ArticleForm, NewArticleForm
 from blog.models import Article
@@ -31,7 +31,7 @@ def edit_article(request, article_slug):
         article.title = form.cleaned_data['title']
         article.content = form.cleaned_data['content']
         article.slug = slugify(form.cleaned_data['title'])[:79]
-        article.last_update = ndb.DateTimeProperty(auto_now_add=True)
+        article.last_update = datetime.now()
         article.put()
         return redirect(article)
     return render(request, 'edit_article.html', {'form': form})
