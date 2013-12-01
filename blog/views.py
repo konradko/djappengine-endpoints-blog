@@ -38,7 +38,6 @@ def edit_article(request, article_slug):
             article.last_update = datetime.now()
             article.put()
         return redirect('/')
-
     return render(request, 'article.html', {'form': form})
 
 def delete_article(request, article_slug):

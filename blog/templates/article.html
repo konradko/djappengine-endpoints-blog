@@ -2,27 +2,25 @@
 
 {% block content %}
 
-<form method="post" class="pure-form pure-form-aligned">{% csrf_token %}
+<form method="post" class="pure-form pure-form-stacked">{% csrf_token %}
     <fieldset>
-        <div class="pure-control-group">
-            <label for="title">Title</label>
-             {{ form.title }}
-        </div>
 
-        <div class="pure-control-group">
-            <label for="content">Content</label>
-            {{ form.content }}
-        </div>
+        {% if form.errors %}
+            {{ form.non_field_errors }}
+            {{ form.title.errors }}
+            {{ form.content.errors }}
+        {% endif %}
+
+        {{ form.title }}
+        {{ form.content }}
 
         {% if form.delete %}
-         <div class="pure-control-group">
-            <label for="cb" class="pure-checkbox">Delete</label>
+            {{ form.delete.errors }}
+            <label for="delete" class="pure-checkbox">Delete</label>
             {{ form.delete }}
         {% endif %}
-        
-        <div class="pure-controls">
-            <button type="submit" class="pure-button pure-button-primary">Submit</button>
-        </div>
+
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
     </fieldset>
 </form>
 

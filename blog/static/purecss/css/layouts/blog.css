@@ -174,3 +174,12 @@ a:focus {
         padding: 2em 1em 0;
     }
 }
+
+/* NOT PURECSS */
+
+.errorlist {
+    padding: 0;
+    list-style: none;
+    font-size: 90%;
+    color: #a60000;
+}
