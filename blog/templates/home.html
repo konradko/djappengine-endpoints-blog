@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Articles</h1>
 
     {% for article in articles %}
-        <h1>{{ article.title }}</h1>
-        {{ article.content }}
+        <div class="posts">
+            <!-- A single blog post -->
+            <section class="post">
+                <header class="post-header">
+                    <h2 class="post-title">{{ article.title }}</h2>
+                </header>
+                <div class="post-description">
+                    <p>{{ article.content }}</p>
+                </div>
+            </section>
+        </div>
     {% endfor %}
 
 {% endblock %}
