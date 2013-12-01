@@ -21,7 +21,7 @@ def new_article(request):
             content=form.cleaned_data['content'],
             slug=slugify(form.cleaned_data['title'])[:79])
         article.put()
-        return redirect(article)
+        return redirect('/')
     return render(request, 'new_article.html', {'form': form})
 
 def edit_article(request, article_slug):
@@ -33,7 +33,7 @@ def edit_article(request, article_slug):
         article.slug = slugify(form.cleaned_data['title'])[:79]
         article.last_update = datetime.now()
         article.put()
-        return redirect(article)
+        return redirect('/')
     return render(request, 'edit_article.html', {'form': form})
 
 def delete_article(request, article_slug):
@@ -43,7 +43,3 @@ def delete_article(request, article_slug):
 def home_page(request):
     articles = Article.query().order(-Article.created).fetch(10)
     return render(request, 'home.html', {'articles': articles})
-
-def view_article(request, article_slug):
-    article = get_article(article_slug)
-    return render(request, 'article.html', {'article': article})

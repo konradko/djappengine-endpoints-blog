@@ -5,7 +5,6 @@ from blog import views
 
 urlpatterns = patterns('',
     url(r'^$', views.home_page, name='home_page'),
-    url(r'^articles/([-\w]+)/$', views.view_article, name='view_article'),
     url(r'^new$', views.new_article, name='new_article'),
     url(r'^edit/([-\w]+)/$', views.edit_article, name='edit_article'),
     url(r'^delete/([-\w]+)/$', views.delete_article, name='delete_article'),
