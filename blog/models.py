@@ -8,4 +8,4 @@ class Article(ndb.Model):
     last_update = ndb.DateTimeProperty(auto_now_add=True)
 
     def get_absolute_url(self):
-        return "/articles/%s/" % self.slug
+        return "/edit/%s/" % self.slug
