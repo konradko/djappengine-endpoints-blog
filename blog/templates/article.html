@@ -16,11 +16,11 @@
 
         {% if form.delete %}
             {{ form.delete.errors }}
-            <label for="delete" class="pure-checkbox">Delete</label>
-            {{ form.delete }}
+            <div class="pure-checkbox">{{ form.delete }} Delete</div>
         {% endif %}
 
-        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Submit</button>
+
     </fieldset>
 </form>
 
