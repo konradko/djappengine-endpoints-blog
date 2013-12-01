@@ -2,8 +2,8 @@ from django import forms
 
 from blog.models import Article
 
-class ArticleForm(forms.Form):
 
+class ArticleForm(forms.Form):
     title = forms.CharField(
         required=True,
         error_messages={'required': "Title can't be empty"},
@@ -16,6 +16,8 @@ class ArticleForm(forms.Form):
             'placeholder': 'Enter article',
         })
     )
+
+class NewArticleForm(ArticleForm):
 
     def clean_title(self):
         data = self.cleaned_data['title']
