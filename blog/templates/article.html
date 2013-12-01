@@ -1,7 +1,29 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<form method="POST">{% csrf_token %}
-{{ form }}
-<input type="submit" value="Submit" />
+
+<form method="post" class="pure-form pure-form-aligned">{% csrf_token %}
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="title">Title</label>
+             {{ form.title }}
+        </div>
+
+        <div class="pure-control-group">
+            <label for="content">Content</label>
+            {{ form.content }}
+        </div>
+
+        {% if form.delete %}
+         <div class="pure-control-group">
+            <label for="cb" class="pure-checkbox">Delete</label>
+            {{ form.delete }}
+        {% endif %}
+        
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
 </form>
+
 {% endblock %}
