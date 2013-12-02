@@ -41,7 +41,6 @@ def edit_article(request, article_slug):
         else:
             article.title = form.cleaned_data['title']
             article.content = form.cleaned_data['content']
-            article.slug = get_unique_slug(form.cleaned_data['title'])
             article.last_update = datetime.now()
             article.put()
         return redirect('/')
