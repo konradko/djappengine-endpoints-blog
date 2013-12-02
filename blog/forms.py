@@ -1,9 +1,6 @@
 from django import forms
 
-from blog.models import Article
-
-
-class BaseArticleForm(forms.Form):
+class ArticleForm(forms.Form):
     title = forms.CharField(
         required=True,
         error_messages={'required': "Title can't be empty"},
@@ -20,14 +17,5 @@ class BaseArticleForm(forms.Form):
         })
     )
 
-class NewArticleForm(BaseArticleForm):
-
-    def clean_title(self):
-        data = self.cleaned_data['title']
-        # Check that title is unique, needed for slug uniqueness
-        if Article.query(Article.title == data).get():
-            raise forms.ValidationError("You already have article with that title")
-        return data
-
-class EditArticleForm(BaseArticleForm):
+class EditArticleForm(ArticleForm):
     delete = forms.BooleanField(required=False)
