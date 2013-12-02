@@ -183,3 +183,8 @@ a:focus {
     font-size: 90%;
     color: #a60000;
 }
+
+.brand-title a {
+    color:inherit;
+    text-decoration: none;
+}
