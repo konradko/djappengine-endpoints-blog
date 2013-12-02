@@ -5,7 +5,6 @@ urlpatterns = patterns('blog.views',
     url(r'^$', 'home_page', name='home_page'),
     url(r'^new$', 'new_article', name='new_article'),
     url(r'^edit/([-\w]+)/$', 'edit_article', name='edit_article'),
-    url(r'^delete/([-\w]+)/$', 'delete_article', name='delete_article'),
 )
 
 if settings.DEBUG:
