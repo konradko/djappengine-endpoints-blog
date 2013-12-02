@@ -14,7 +14,7 @@
     <div class="sidebar pure-u">
         <header class="header">
             <hgroup>
-                <h1 class="brand-title">Blog</h1>
+                <h1 class="brand-title"><a href="{% url home_page %}">Blog</a></h1>
                 <h2 class="brand-tagline">Simple blog on djappengine</h2>
             </hgroup>
 
@@ -31,13 +31,6 @@
     <div class="pure-u-1">
         <div class="content">
             {% block content %}{% endblock %}
-            <footer class="footer">
-                <div class="pure-menu pure-menu-horizontal pure-menu-open">
-                    <ul>
-                        <li><a href="https://github.com/konradko/djappengine-blog">Source</a></li>
-                    </ul>
-                </div>
-            </footer>
         </div>
     </div>
 </div>
