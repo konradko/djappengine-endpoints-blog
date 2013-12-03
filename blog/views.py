@@ -46,11 +46,11 @@ def edit_article(request, article_slug):
     if request.POST.get('delete'):
         article.key.delete()
         return redirect('/')
-    if form.is_valid():
+    elif form.is_valid():
         article.title = form.cleaned_data['title']
         article.content = form.cleaned_data['content']
         article.last_update = datetime.now()
-        article.slug=get_unique_slug(article.title)
+        article.slug = get_unique_slug(article.title)
         article.put()
         return redirect('/')
     return render(request, 'article.html', {'form': form})
