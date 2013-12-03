@@ -57,6 +57,14 @@ class TestViews(TestBase):
         self.assertEqual(article.title, 'Edited title')
         self.assertEqual(article.content, 'Edited content')
 
+    def test_slug_changes_with_title(self):
+        article = self.create_article()
+        initial_slug = article.slug
+        self.client.post('/edit/%s' % article.slug,
+            {'title': 'Edited title', 'content': 'Edited content'}
+        )
+        self.assertNotEqual(initial_slug, article.slug)
+
     def test_delete_article(self):
         article = self.create_article()
         self.client.post('/edit/%s' % article.slug,
