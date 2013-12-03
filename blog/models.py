@@ -7,5 +7,8 @@ class Article(ndb.Model):
     created = ndb.DateTimeProperty(auto_now_add=True)
     last_update = ndb.DateTimeProperty(auto_now_add=True)
 
+    def __unicode__(self):
+        return self.title
+
     def get_absolute_url(self):
-        return "/edit/%s/" % self.slug
+        return "/edit/%s" % self.slug
