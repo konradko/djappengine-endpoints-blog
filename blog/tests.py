@@ -5,9 +5,7 @@ from django.core.urlresolvers import reverse
 from ndbtestcase import NdbTestCase
 
 from blog.models import Article
-from blog.views import get_new_article, find_article
 from blog.forms import ArticleForm
-
 
 class TestBase(NdbTestCase):
 
@@ -16,7 +14,7 @@ class TestBase(NdbTestCase):
         self.client = Client()
 
     def create_article(self, title='Test title', content='Test content'):
-        return get_new_article(title=title, content=content)
+        return Article.get_new(title=title, content=content)
 
 class TestModel(TestBase):
 
@@ -47,7 +45,7 @@ class TestViews(TestBase):
         self.client.post('/new',
             {'title': 'New title', 'content': 'New content'}
         )
-        self.assertTrue(find_article('new-title'))
+        self.assertTrue(Article.find('new-title'))
 
     def test_edit_article(self):
         article = self.create_article()
@@ -70,7 +68,7 @@ class TestViews(TestBase):
         self.client.post('/edit/%s' % article.slug,
             {'delete': True}
         )
-        self.assertFalse(find_article(article.slug))
+        self.assertFalse(Article.find(article.slug))
 
 class TestForms(TestBase):
 
