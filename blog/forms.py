@@ -6,6 +6,7 @@ class ArticleForm(forms.Form):
         error_messages={'required': "Title can't be empty"},
         widget=forms.TextInput(attrs={
             'placeholder': 'Enter title',
+             'class': "pure-input-1-2",
         })
     )
 
@@ -14,6 +15,7 @@ class ArticleForm(forms.Form):
         error_messages={'required': "Content can't be empty"},
         widget=forms.Textarea(attrs={
             'placeholder': 'Enter article',
+            'class': "pure-input-1-2",
         })
     )
 
