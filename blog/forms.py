@@ -1,4 +1,5 @@
 from django import forms
+from markdown import markdown
 
 class ArticleForm(forms.Form):
     title = forms.CharField(
@@ -18,6 +19,13 @@ class ArticleForm(forms.Form):
             'class': "pure-input-1-2",
         })
     )
+
+    def clean_content(self):
+        data = self.cleaned_data['content']
+        if "[HTML_REMOVED]" in markdown(data , safe_mode=True):
+            raise forms.ValidationError("You can't have HTML in content, use markdown syntax instead")
+        return data
+
 
 class EditArticleForm(ArticleForm):
     delete = forms.BooleanField(required=False)

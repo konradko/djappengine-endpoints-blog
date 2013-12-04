@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load markup %}
+
 {% block content %}
 
     {% for article in articles %}
@@ -10,7 +12,7 @@
                     <a href="{{ article.get_absolute_url }}"><h2 class="post-title">{{ article.title }}</h2></a>
                 </header>
                 <div class="post-description">
-                    <p>{{ article.content }}</p>
+                    <p>{{ article.content|markdown:"safe" }}</p>
                 </div>
             </section>
         </div>
