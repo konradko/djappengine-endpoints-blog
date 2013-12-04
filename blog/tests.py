@@ -82,5 +82,10 @@ class TestForms(TestBase):
         form = ArticleForm(data=data)
         self.assertFalse(form.is_valid())
 
+    def test_invalid_article_html_content(self):
+        data = {'title': 'Test form title', 'content': '<p>Test content</p>'}
+        form = ArticleForm(data=data)
+        self.assertFalse(form.is_valid())
+
 if __name__ == '__main__':
     unittest.main()
