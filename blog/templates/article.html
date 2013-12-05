@@ -2,9 +2,14 @@
 
 {% block content %}
 
+{% if form.delete %}
+    <h2 class="form-title">Edit article</h2>
+{% else %}
+    <h2 class="form-title">Add new article</h2>
+{% endif %}
+
 <form method="post" class="pure-form pure-form-stacked">{% csrf_token %}
     <fieldset>
-
         {% if form.errors %}
             {{ form.non_field_errors }}
             {{ form.title.errors }}
