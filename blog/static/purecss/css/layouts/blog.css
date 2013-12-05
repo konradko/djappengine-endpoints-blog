@@ -2,6 +2,11 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    -moz-hyphens:auto;
+    -ms-hyphens:auto;
+    -webkit-hyphens:auto;
+    hyphens:auto;
+    word-wrap:break-word;
 }
 
 a {
@@ -191,4 +196,10 @@ a:focus {
 
 textarea {
     resize: none;
+}
+
+.form-title {
+    font-size: 2em;
+    color: #222;
+    margin-bottom: 0.2em;
 }
