@@ -27,14 +27,13 @@ handlers:
   script: main.app
   login: admin
 
-# Uncomment to add admin auth
-# - url: /new
-#   script: main.app
-#   login: admin
+- url: /new
+  script: main.app
+  login: admin
 
-# - url: /edit/.*
-#   script: main.app
-#   login: admin
+- url: /edit/.*
+  script: main.app
+  login: admin
 
 - url: /.*
   script: main.app
