@@ -1,10 +1,10 @@
 # Blog on djappengine
 
-Example: <http://djae-blog.appspot.com>
+Example: <http://djae-blog-test.appspot.com>
 
 * Setup for Google App Engine with [djappengine](https://github.com/potatolondon/djappengine/)
 * Supports [markdown](http://daringfireball.net/projects/markdown) syntax for article content
-* Uses [Pure](http://purecss.io/) responsive CSS blog layout
+* Uses [Pure](http://purecss.io/) responsive CSS modified blog layout
 
 ## Requirements
 
