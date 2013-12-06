@@ -20,7 +20,7 @@ a:focus {
 
 /* LAYOUT CSS */
 #layout {
-    padding-left: 25%; /* "left col (nav + list)" width */
+    padding-left: 250px; /* "left col (nav + list)" width */
     position: relative;
 }
 
@@ -28,8 +28,8 @@ a:focus {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 25%;
-    margin-left: -25%;
+    width: 250px;
+    margin-left: -250px;
     background: rgb(24, 33, 61);
     color: #fff;
 }
@@ -44,8 +44,16 @@ a:focus {
     margin: 0;
 }
 .brand-title {
+    color:inherit;
+    text-decoration: none;
     text-transform: uppercase;
 }
+
+.brand-title a {
+    color:inherit;
+    text-decoration: none;
+}
+
 .brand-tagline {
     font-weight: 300;
     color: rgb(142, 142, 214);
@@ -74,17 +82,7 @@ a:focus {
     text-decoration: none;
 }
 
-.content-subhead {
-    text-transform: uppercase;
-    color: #aaa;
-    border-bottom: 1px solid #eee;
-    padding: 0.4em 0;
-    font-size: 80%;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-}
-
-.content {
+.main {
     padding: 2em 3em 0;
 }
 
@@ -96,50 +94,28 @@ a:focus {
     color: #222;
     margin-bottom: 0.2em;
 }
-.post-avatar {
-    border-radius: 50px;
-    float: right;
-    margin-left: 1em;
-}
-.post-description {
+
+.post-content {
     font-family: Georgia, "Cambria", serif;
     color: #444;
     line-height: 1.8em;
 }
-.post-meta {
-    color: #999;
+
+.form-title {
+    font-size: 2em;
+    color: #222;
+    margin-bottom: 0.2em;
+}
+
+.errorlist {
+    padding: 0;
+    list-style: none;
     font-size: 90%;
-    margin: 0;
+    color: #a60000;
 }
 
-.post-category {
-    margin: 0 0.1em;
-    padding: 0.3em 1em;
-    color: #fff;
-    background: #999;
-    font-size: 80%;
-}
-    .post-category-design {
-        background: #5aba59;
-    }
-    .post-category-pure {
-        background: #4d85d1;
-    }
-    .post-category-yui {
-        background: #8156a7;
-    }
-    .post-category-js {
-        background: #df2d4f;
-    }
-
-.post-images {
-    margin: 1em 0;
-}
-.post-image-meta {
-    margin-top: -3.5em;
-    margin-left: 1em;
-    color: #fff;
-    text-shadow: 0 1px 1px #333;
+textarea {
+    resize: none;
 }
 
 .footer {
@@ -178,28 +154,4 @@ a:focus {
     .content {
         padding: 2em 1em 0;
     }
-}
-
-/* NOT PURECSS */
-
-.errorlist {
-    padding: 0;
-    list-style: none;
-    font-size: 90%;
-    color: #a60000;
-}
-
-.brand-title a {
-    color:inherit;
-    text-decoration: none;
-}
-
-textarea {
-    resize: none;
-}
-
-.form-title {
-    font-size: 2em;
-    color: #222;
-    margin-bottom: 0.2em;
 }
