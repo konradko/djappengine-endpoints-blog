@@ -6,10 +6,14 @@
 
     {% for article in articles %}
         <div class="posts">
-            <!-- A single blog post -->
             <section class="post">
                 <header class="post-header">
-                    <a href="{{ article.get_absolute_url }}"><h2 class="post-title">{{ article.title }}</h2></a>
+                    {% if admin %}
+                        <a href="{{ article.get_edit_url }}">
+                    {% else %}
+                        <a href="{{ article.get_absolute_url }}">
+                    {% endif %}
+                    <h2 class="post-title">{{ article.title }}</h2></a>
                 </header>
                 <div class="post-content">
                     <p>{{ article.content|markdown:"safe" }}</p>
