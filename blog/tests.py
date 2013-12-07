@@ -42,14 +42,14 @@ class TestViews(TestBase):
         self.assertEqual(len(articles), len(set([a.slug for a in articles])))
 
     def test_add_article(self):
-        self.client.post('/new',
+        self.client.post('/admin/new',
             {'title': 'New title', 'content': 'New content'}
         )
         self.assertTrue(Article.find('new-title'))
 
     def test_edit_article(self):
         article = self.create_article()
-        self.client.post('/edit/%s' % article.slug,
+        self.client.post('/admin/edit/%s' % article.slug,
             {'title': 'Edited title', 'content': 'Edited content'}
         )
         self.assertEqual(article.title, 'Edited title')
@@ -58,14 +58,14 @@ class TestViews(TestBase):
     def test_slug_changes_with_title(self):
         article = self.create_article()
         initial_slug = article.slug
-        self.client.post('/edit/%s' % article.slug,
+        self.client.post('/admin/edit/%s' % article.slug,
             {'title': 'Edited title', 'content': 'Edited content'}
         )
         self.assertNotEqual(initial_slug, article.slug)
 
     def test_delete_article(self):
         article = self.create_article()
-        self.client.post('/edit/%s' % article.slug,
+        self.client.post('/admin/edit/%s' % article.slug,
             {'delete': True}
         )
         self.assertFalse(Article.find(article.slug))

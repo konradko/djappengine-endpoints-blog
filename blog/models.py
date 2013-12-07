@@ -39,6 +39,9 @@ class Article(ndb.Model):
     def save(self):
         self.slug = self.get_unique_slug(self.title)
         return self.put()
+    
+    def get_edit_url(self):
+        return "/admin/edit/%s" % self.slug
 
     def get_absolute_url(self):
-        return "/edit/%s" % self.slug
+        return "/articles/%s" % self.slug
