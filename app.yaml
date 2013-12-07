@@ -27,11 +27,7 @@ handlers:
   script: main.app
   login: admin
 
-- url: /new
-  script: main.app
-  login: admin
-
-- url: /edit/.*
+- url: /admin/.*
   script: main.app
   login: admin
 
