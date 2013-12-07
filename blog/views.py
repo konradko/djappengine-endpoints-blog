@@ -1,8 +1,18 @@
+from google.appengine.api import users
 from django.shortcuts import render, redirect
 from datetime import datetime
 
 from blog.forms import EditArticleForm, ArticleForm
 from blog.models import Article
+
+
+def view_article(request, article_slug):
+    article = Article.find(article_slug)
+    return render(request, 'article.html', {'article': article})
+
+def home_page(request):
+    articles = Article.query().order(-Article.created).fetch()
+    return render(request, 'home.html', {'articles': articles})
 
 def new_article(request):
     form = ArticleForm(request.POST or None)
@@ -12,7 +22,7 @@ def new_article(request):
             content=form.cleaned_data['content'],
         )
         return redirect('/')
-    return render(request, 'article.html', {'form': form})
+    return render(request, 'form.html', {'form': form})
 
 def edit_article(request, article_slug):
     article = Article.find(article_slug)
@@ -26,8 +36,7 @@ def edit_article(request, article_slug):
         article.last_update = datetime.now()
         article.save()
         return redirect('/')
-    return render(request, 'article.html', {'form': form})
+    return render(request, 'form.html', {'form': form})
 
-def home_page(request):
-    articles = Article.query().order(-Article.created).fetch()
-    return render(request, 'home.html', {'articles': articles})
+def admin(request):
+    return redirect(users.create_login_url('/'))
