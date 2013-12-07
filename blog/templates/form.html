@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if form.delete %}
+    <h2 class="form-title">Edit article</h2>
+{% else %}
+    <h2 class="form-title">Add new article</h2>
+{% endif %}
+
+<form method="post" class="pure-form pure-form-stacked">{% csrf_token %}
+    <fieldset>
+        {% if form.errors %}
+            {{ form.non_field_errors }}
+            {{ form.title.errors }}
+            {{ form.content.errors }}
+        {% endif %}
+
+        {{ form.title }}
+        {{ form.content }}
+
+        {% if form.delete %}
+            {{ form.delete.errors }}
+            <div class="pure-checkbox">{{ form.delete }} Delete</div>
+        {% endif %}
+
+        <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Submit</button>
+
+    </fieldset>
+</form>
+
+{% endblock %}
