@@ -34,7 +34,7 @@ def edit_article(request, article_slug):
         article.title = form.cleaned_data['title']
         article.content = form.cleaned_data['content']
         article.last_update = datetime.now()
-        article.save()
+        article.put()
         return redirect('/')
     return render(request, 'form.html', {'form': form})
 
