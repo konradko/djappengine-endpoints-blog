@@ -51,8 +51,11 @@ def setup_environ():
                     # Work around an SDK issue
                     logging.warn('django 1.4 not recognised by dist, fixing python path')
                     sys.path.insert(0, os.path.join(sdk_path, 'lib', 'django-1.4'))
+                elif library.name == 'endpoints':
+                    logging.warn('endpoints recognised by dist, fixing python path')
+                    sys.path.insert(0, os.path.join(sdk_path, 'lib', 'endpoints-1.0'))
                 else:
-                    logging('Unsupported library:\n%s\n' % e)
+                    logging.error('Unsupported library:\n%s\n' % e)
 
             # Extra setup for django
             if library.name == 'django':
