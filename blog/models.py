@@ -1,9 +1,11 @@
 from google.appengine.ext import ndb
+from endpoints_proto_datastore.ndb import EndpointsModel
 from django.template.defaultfilters import slugify
 
-class Article(ndb.Model):
-    title = ndb.StringProperty(required=True)
+class Article(EndpointsModel):
+    _message_fields_schema = ('id', 'title', 'content', 'created', 'last_update')
     slug = ndb.StringProperty(required=True)
+    title = ndb.StringProperty(required=True)
     content = ndb.TextProperty(required=True)
     created = ndb.DateTimeProperty(auto_now_add=True)
     last_update = ndb.DateTimeProperty(auto_now_add=True)
@@ -21,7 +23,8 @@ class Article(ndb.Model):
             title=title,
             content=content,
         )
-        return article.save().get()
+        article.put()
+        return article
 
     @classmethod
     def get_unique_slug(self, title):
@@ -36,10 +39,10 @@ class Article(ndb.Model):
                 counter += 1
         return article_slug
 
-    def save(self):
+    def put(self, *args, **kwargs):
         self.slug = self.get_unique_slug(self.title)
-        return self.put()
-    
+        super(Article, self).put(*args, **kwargs)
+  
     def get_edit_url(self):
         return "/admin/edit/%s" % self.slug
 
