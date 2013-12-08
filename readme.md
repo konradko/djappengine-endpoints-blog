@@ -3,12 +3,13 @@
 Example: <http://djae-blog-test.appspot.com>
 
 * Setup for Google App Engine with [djappengine](https://github.com/potatolondon/djappengine/)
+* API on Google Cloud Enpoints created with [endpoints-proto-datastore](https://github.com/GoogleCloudPlatform/endpoints-proto-datastore)
 * Supports [markdown](http://daringfireball.net/projects/markdown) syntax for article content
 * Uses [Pure](http://purecss.io/) responsive CSS modified blog layout
 
 ## Requirements
 
-Google Appengine Python SDK 1.7.5+
+Google Appengine Python SDK 1.8.5+
 
 ## Installation
 
