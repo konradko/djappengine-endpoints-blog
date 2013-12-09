@@ -3,13 +3,14 @@ from protorpc import remote, message_types
 
 from blog.models import Article
 
-CLIENT_ID = 'YOUR-CLIENT-ID'
+#TODO: Change with id generated for JS app on https://cloud.google.com/console
+CLIENT_ID = endpoints.API_EXPLORER_CLIENT_ID
 
 @endpoints.api(
     name='article_api',
     version='v1',
     description='API for articles',
-    allowed_client_ids=[CLIENT_ID, endpoints.API_EXPLORER_CLIENT_ID]
+    allowed_client_ids=[CLIENT_ID, ]
 )
 class ArticleApi(remote.Service):
 
@@ -18,6 +19,8 @@ class ArticleApi(remote.Service):
             raise endpoints.NotFoundException('Article not found.')
 
     @Article.method(
+        #TODO: Admin verification (user in model?)
+        user_required=True,
         path='add',
         http_method='POST',
         name='article.insert')
@@ -26,6 +29,7 @@ class ArticleApi(remote.Service):
         return article
 
     @Article.method(
+        user_required=True,
         request_fields=('id', 'title', 'content'),
         path='patch/{id}',
         http_method='PUT',
@@ -37,6 +41,7 @@ class ArticleApi(remote.Service):
         return article
 
     @Article.method(
+        user_required=True,
         request_fields=('id',),
         path='delete/{id}',
         response_message=message_types.VoidMessage,
@@ -49,6 +54,7 @@ class ArticleApi(remote.Service):
         return message_types.VoidMessage()
 
     @Article.method(
+        user_required=True,
         request_fields=('id',),
         path='article/{id}',
         http_method='GET',
